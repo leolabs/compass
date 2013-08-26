@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ComPass - Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/font-awesome.min.css" rel="stylesheet" media="screen">
+    <meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8"/>
+
+    <style type="text/css">
+        .second {
+            border-top: 1px solid;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+
+        .navbar-brand {
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Duplexmedia - FTP Zugang</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form">
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="icon-fixed-width icon-file-text"></i></span>
+                        <input type="text" class="form-control" placeholder="Name">
+                    </div>
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="icon-fixed-width icon-tags"></i></span>
+                        <input type="text" class="form-control" placeholder="Tags (Kommagetrennt)">
+                    </div>
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="icon-fixed-width icon-globe"></i></span>
+                        <input type="text" class="form-control" placeholder="Internetadresse">
+
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                Mehr
+                                <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Website öffnen</a></li>
+                                <li><a href="#">In die Zwischenablage</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="icon-fixed-width icon-user"></i></span>
+                        <input type="text" class="form-control" placeholder="Benutzername">
+
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                Mehr
+                                <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">In die Zwischenablage</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="icon-fixed-width icon-key"></i></span>
+                        <input type="password" class="form-control" placeholder="Passwort">
+
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                Mehr
+                                <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Passwort anzeigen</a></li>
+                                <li><a href="#">In die Zwischenablage</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Neues Passwort generieren</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="icon-fixed-width icon-file-text"></i></span>
+                        <textarea class="form-control" rows="3" placeholder="Kommentare (Markdown)"></textarea>
+                    </div>
+                </form>
+
+                <div class="panel panel-default" style="margin-bottom: 0">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading">Weitere Infos</div>
+
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <strong>Erstellt am</strong> 25.8.2013<br />
+                                <strong>Geändert am</strong> 25.8.2013
+                            </div>
+                            <div class="col-sm-6">
+                                <strong>Letzter Zugriff</strong> 25.8.2013<br />
+                                <strong>Ablaufdatum:</strong> 25.8.2013
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" style="margin-top: 0">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Schließen</button>
+                <button type="button" class="btn btn-primary">Speichern</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<div class="navbar navbar-default navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">com<strong>pass</strong></a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Einstellungen</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Leo Bernard <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Profil bearbeiten</a></li>
+                        <li><a href="#">Ungelesene Nachrichten</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Ausloggen</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 col-sm-4">
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading">
+                    Kunden
+                    <button class="btn pull-right btn-xs btn-default">Neuer Kunde</button>
+                </div>
+
+                <!-- List group -->
+                <div class="list-group">
+                    <a href="#" class="list-group-item active">
+                        Duplexmedia
+                        <div class="pull-right"><span class="label label-default">24</span></div>
+                    </a>
+                    <a href="#" class="list-group-item">
+                        Fritz Milosevic
+                        <div class="pull-right"><span class="label label-default">5</span></div>
+                    </a>
+                    <a href="#" class="list-group-item">
+                        Martin Metzmacher
+                        <div class="pull-right"><span class="label label-default">2</span></div>
+                    </a>
+                    <a href="#" class="list-group-item">
+                        Antje Keyenburg
+                        <div class="pull-right"><span class="label label-default">4</span></div>
+                    </a>
+                </div>
+
+                <!-- Default panel contents -->
+                <div class="panel-heading second hidden-xs">Tags</div>
+                <div class="panel-body hidden-xs">
+                    <span class="label label-default">FTP</span>
+                    <span class="label label-default">MySQL</span>
+                    <span class="label label-default">PhpMyAdmin</span>
+                    <span class="label label-default">Duplexserver</span>
+                    <span class="label label-default">Domain Factory</span>
+                </div>
+
+                <!-- Default panel contents -->
+                <div class="panel-heading second hidden-xs">Tips & Tricks</div>
+                <div class="panel-body hidden-xs">
+                    Klicken Sie auf einen Eintrag mit der rechten Maustaste um das Passwort in die Zwischenablage zu
+                    kopieren ohne es anzuzeigen.
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-9 col-sm-8">
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading">
+                    Einträge für Duplexmedia
+                    <button class="btn pull-right btn-xs btn-default" style="margin-left: 10px">Einstellungen</button>
+                    <button class="btn pull-right btn-xs btn-default">Neuer Eintrag</button>
+                </div>
+
+                <!-- List group -->
+                <div class="list-group">
+                    <a data-toggle="modal" href="#myModal" class="list-group-item">
+                        Kundenmenü
+                        <div class="pull-right">
+                            <span class="label label-default">Domain Factory</span>
+                            <span class="label label-default">...</span>
+                        </div>
+                    </a>
+                    <a data-toggle="modal" href="#myModal" class="list-group-item">
+                        FTP Zugang
+                        <div class="pull-right">
+                            <span class="label label-default">FTP</span>
+                            <span class="label label-default">Duplexserver</span>
+                            <span class="label label-default">...</span>
+                        </div>
+                    </a>
+                    <a data-toggle="modal" href="#myModal" class="list-group-item">
+                        MySQL Zugang
+                        <div class="pull-right">
+                            <span class="label label-default">MySQL</span>
+                            <span class="label label-default">PhpMyAdmin</span>
+                            <span class="label label-default">Duplexserver</span>
+                            <span class="label label-default">...</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="http://code.jquery.com/jquery.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
