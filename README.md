@@ -1,3 +1,3 @@
-# COM**PASS**
+# COMPASS
 
-COM**PASS** is a simple web app to manage passwords in a team.
+COMPASS is a simple web app to manage passwords in a team.
