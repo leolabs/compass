@@ -20,7 +20,7 @@
         }
     </style>
 </head>
-<body>
+<body ng-app="compassMain">
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -126,6 +126,11 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="#">com<strong>pass</strong></a>
+            <form class="navbar-form navbar-right">
+                <div class="form-group">
+                    <input type="text" ng-model="global.searchTerm" placeholder="Suchen" class="form-control">
+                </div>
+            </form>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
@@ -156,33 +161,11 @@
                 </div>
 
                 <!-- List group -->
-                <div class="list-group">
-                    <a href="#" class="list-group-item active">
-                        Duplexmedia
-                        <div class="pull-right"><span class="label label-default">24</span></div>
+                <div class="list-group" ng-controller="CompassController">
+                    <a href="#/{{ customer.slug }}" ng-repeat="customer in data" class="list-group-item {{ isActiveMenuLink(customer.slug) }}">
+                        {{ customer.name }}
+                        <div class="pull-right"><span class="label label-default">{{ customer.entries.length }}</span></div>
                     </a>
-                    <a href="#" class="list-group-item">
-                        Fritz Milosevic
-                        <div class="pull-right"><span class="label label-default">5</span></div>
-                    </a>
-                    <a href="#" class="list-group-item">
-                        Martin Metzmacher
-                        <div class="pull-right"><span class="label label-default">2</span></div>
-                    </a>
-                    <a href="#" class="list-group-item">
-                        Antje Keyenburg
-                        <div class="pull-right"><span class="label label-default">4</span></div>
-                    </a>
-                </div>
-
-                <!-- Default panel contents -->
-                <div class="panel-heading second hidden-xs">Tags</div>
-                <div class="panel-body hidden-xs">
-                    <span class="label label-default">FTP</span>
-                    <span class="label label-default">MySQL</span>
-                    <span class="label label-default">PhpMyAdmin</span>
-                    <span class="label label-default">Duplexserver</span>
-                    <span class="label label-default">Domain Factory</span>
                 </div>
 
                 <!-- Default panel contents -->
@@ -195,42 +178,7 @@
         </div>
 
         <div class="col-md-9 col-sm-8">
-            <div class="panel panel-default">
-                <!-- Default panel contents -->
-                <div class="panel-heading">
-                    Einträge für Duplexmedia
-                    <button class="btn pull-right btn-xs btn-default" style="margin-left: 10px">Einstellungen</button>
-                    <button class="btn pull-right btn-xs btn-default">Neuer Eintrag</button>
-                </div>
-
-                <!-- List group -->
-                <div class="list-group">
-                    <a data-toggle="modal" href="#myModal" class="list-group-item">
-                        Kundenmenü
-                        <div class="pull-right">
-                            <span class="label label-default">Domain Factory</span>
-                            <span class="label label-default">...</span>
-                        </div>
-                    </a>
-                    <a data-toggle="modal" href="#myModal" class="list-group-item">
-                        FTP Zugang
-                        <div class="pull-right">
-                            <span class="label label-default">FTP</span>
-                            <span class="label label-default">Duplexserver</span>
-                            <span class="label label-default">...</span>
-                        </div>
-                    </a>
-                    <a data-toggle="modal" href="#myModal" class="list-group-item">
-                        MySQL Zugang
-                        <div class="pull-right">
-                            <span class="label label-default">MySQL</span>
-                            <span class="label label-default">PhpMyAdmin</span>
-                            <span class="label label-default">Duplexserver</span>
-                            <span class="label label-default">...</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
+            <div ng-view=""></div>
         </div>
     </div>
 </div>
@@ -239,5 +187,11 @@
 <script src="http://code.jquery.com/jquery.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/bootstrap.min.js"></script>
+<script src="js/angular.min.js"></script>
+<script src="js/parseURI.js"></script>
+
+<!-- App code files -->
+<script src="js/app.js"></script>
+<script src="js/filters.js"></script>
 </body>
 </html>

@@ -1,0 +1,15 @@
+<div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">
+        Einträge für {{ data[params.customer].name }}
+        <button class="btn pull-right btn-xs btn-default" style="margin-left: 10px">Einstellungen</button>
+        <button class="btn pull-right btn-xs btn-default">Neuer Eintrag</button>
+    </div>
+
+    <!-- List group -->
+    <div class="list-group" ng-controller="CompassController">
+        <a ng-repeat="entry in data[params.customer].entries | filter: global.searchTerm" data-toggle="modal" href="#myModal" class="list-group-item">
+            {{ entry.name }} <span class="hidden-xs pull-right">{{ entry.site | domainName }}</span>
+        </a>
+    </div>
+</div>
