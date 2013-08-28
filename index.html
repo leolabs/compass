@@ -20,102 +20,7 @@
         }
     </style>
 </head>
-<body ng-app="compassMain">
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Duplexmedia - FTP Zugang</h4>
-            </div>
-            <div class="modal-body">
-                <form role="form">
-                    <div class="form-group input-group">
-                        <span class="input-group-addon"><i class="icon-fixed-width icon-file-text"></i></span>
-                        <input type="text" class="form-control" placeholder="Name">
-                    </div>
-                    <div class="form-group input-group">
-                        <span class="input-group-addon"><i class="icon-fixed-width icon-tags"></i></span>
-                        <input type="text" class="form-control" placeholder="Tags (Kommagetrennt)">
-                    </div>
-                    <div class="form-group input-group">
-                        <span class="input-group-addon"><i class="icon-fixed-width icon-globe"></i></span>
-                        <input type="text" class="form-control" placeholder="Internetadresse">
-
-                        <div class="input-group-btn">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                Mehr
-                                <span class="caret"></span></button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Website öffnen</a></li>
-                                <li><a href="#">In die Zwischenablage</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="form-group input-group">
-                        <span class="input-group-addon"><i class="icon-fixed-width icon-user"></i></span>
-                        <input type="text" class="form-control" placeholder="Benutzername">
-
-                        <div class="input-group-btn">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                Mehr
-                                <span class="caret"></span></button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">In die Zwischenablage</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="form-group input-group">
-                        <span class="input-group-addon"><i class="icon-fixed-width icon-key"></i></span>
-                        <input type="password" class="form-control" placeholder="Passwort">
-
-                        <div class="input-group-btn">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                Mehr
-                                <span class="caret"></span></button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Passwort anzeigen</a></li>
-                                <li><a href="#">In die Zwischenablage</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Neues Passwort generieren</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="form-group input-group">
-                        <span class="input-group-addon"><i class="icon-fixed-width icon-file-text"></i></span>
-                        <textarea class="form-control" rows="3" placeholder="Kommentare (Markdown)"></textarea>
-                    </div>
-                </form>
-
-                <div class="panel panel-default" style="margin-bottom: 0">
-                    <!-- Default panel contents -->
-                    <div class="panel-heading">Weitere Infos</div>
-
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <strong>Erstellt am</strong> 25.8.2013<br />
-                                <strong>Geändert am</strong> 25.8.2013
-                            </div>
-                            <div class="col-sm-6">
-                                <strong>Letzter Zugriff</strong> 25.8.2013<br />
-                                <strong>Ablaufdatum:</strong> 25.8.2013
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer" style="margin-top: 0">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Schließen</button>
-                <button type="button" class="btn btn-primary">Speichern</button>
-            </div>
-        </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
-<!-- /.modal -->
+<body ng-app="compassMain" ng-controller="CompassController">
 
 <div class="navbar navbar-default navbar-static-top">
     <div class="container">
@@ -134,14 +39,14 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Einstellungen</a></li>
+                <li><a href="#"><lang>Einstellungen</lang></a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Leo Bernard <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Profil bearbeiten</a></li>
-                        <li><a href="#">Ungelesene Nachrichten</a></li>
+                        <li><a href="#"><lang>Profil bearbeiten</lang></a></li>
+                        <li><a href="#"><lang>Ungelesene Nachrichten</lang></a></li>
                         <li class="divider"></li>
-                        <li><a href="#">Ausloggen</a></li>
+                        <li><a href="#"><lang>Ausloggen</lang></a></li>
                     </ul>
                 </li>
             </ul>
@@ -156,20 +61,20 @@
             <div class="panel panel-default">
                 <!-- Default panel contents -->
                 <div class="panel-heading">
-                    Kunden
-                    <button class="btn pull-right btn-xs btn-default">Neuer Kunde</button>
+                    <lang>Kunden</lang>
+                    <button class="btn pull-right btn-xs btn-default"><lang>Neuer Kunde</lang></button>
                 </div>
 
                 <!-- List group -->
-                <div class="list-group" ng-controller="CompassController">
-                    <a href="#/{{ customer.slug }}" ng-repeat="customer in data" class="list-group-item {{ isActiveMenuLink(customer.slug) }}">
-                        {{ customer.name }}
+                <div class="list-group">
+                    <a href="#/{{ customer.ID }}" ng-repeat="customer in data | filter: global.searchTerm" class="list-group-item {{ isActiveMenuLink(customer.ID) }}">
+                        {{ customer.name | decryptAES: false }}
                         <div class="pull-right"><span class="label label-default">{{ customer.entries.length }}</span></div>
                     </a>
                 </div>
 
                 <!-- Default panel contents -->
-                <div class="panel-heading second hidden-xs">Tips & Tricks</div>
+                <div class="panel-heading second hidden-xs"><lang>Tips & Tricks</lang></div>
                 <div class="panel-body hidden-xs">
                     Klicken Sie auf einen Eintrag mit der rechten Maustaste um das Passwort in die Zwischenablage zu
                     kopieren ohne es anzuzeigen.
@@ -188,10 +93,14 @@
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/bootstrap.min.js"></script>
 <script src="js/angular.min.js"></script>
+<script src="js/angular-resource.min.js"></script>
 <script src="js/parseURI.js"></script>
+<script src="js/sjcl.js"></script>
 
 <!-- App code files -->
 <script src="js/app.js"></script>
+<script src="js/i18n.js"></script>
 <script src="js/filters.js"></script>
+<script src="js/directives.js"></script>
 </body>
 </html>

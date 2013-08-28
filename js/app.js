@@ -6,10 +6,15 @@
  * To change this template use File | Settings | File Templates.
  */
 
+var password = "MeinSchlüssel";
+
 var compassMain = angular.module("compassMain", [], function($routeProvider, $locationProvider){
     $routeProvider
         .when('/:customer', {
             templateUrl: 'templates/customer.html',
+            controller: "CompassController"
+        }).when('/:customer/:entry', {
+            templateUrl: 'templates/detail.html',
             controller: "CompassController"
         }).otherwise({
             templateUrl: 'templates/welcome.html',
@@ -17,35 +22,97 @@ var compassMain = angular.module("compassMain", [], function($routeProvider, $lo
         })
 });
 
-
 compassMain.factory('CompassData', function(){
-    var data = {
-        "duplexmedia": {ID: 1, slug: "duplexmedia", name: 'Duplexmedia', entries: [
-            {name: "FTP Zugang", site: 'ftp://ftp.duplexmedia.com', username: "166296", password: "encrypted"},
-            {name: "MySQL Zugang", site: 'http://duplexmedia.com/sqladmin', username: "166296", password: "encrypted"},
-            {name: "DF Kundenmenü", site: 'http://admin.df.eu', username: "duplexmedia.com", password: "encrypted"}
+    var data = [
+        {ID: 1, name: '{"iv":"B7yUykHRU9o6vCrCvWMGPw","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"WiO0mw+ipdorX1Rb9txp6zKSxw"}', entries: [
+            {
+                name: '{"iv":"S6Ejup5lKH+z/p3GZEq/lA","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"qERm/ci+yzMdUbBshslxSYf+"}',
+                tags: '{"iv":"7H9i9QA6kR1JNTD7Z2iOgg","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"QxDr7oSZqdM"}',
+                site: '{"iv":"nn8oy+bnrDc7F2B7hxEEqw","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"sqU5pvd+62CEQnOYS86YWxC83v1Ojp9fpMomAoRMlZjO"}',
+                username: '{"iv":"pIgFXZ/d8nanmLrw/F+i7g","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"CuvofAsMo5/FT2kPYqg"}',
+                password: '{"iv":"5iXSM5rS9jvRv9nK1x8ISQ","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"Gd19m8DBT0bNiUCJQxTTxqUPAqMmOzcx5Q"}'
+            },
+            {
+                name: '{"iv":"paXHpgKPGk3wwFQAN7yipQ","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"QJWd9XhdDL69+SBc70VjbYfq5cM"}',
+                tags: '{"iv":"7H9i9QA6kR1JNTD7Z2iOgg","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"QxDr7oSZqdM"}',
+                site: '{"iv":"TRStPZGnsg6bCCObSmEPOA","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"IbRVQBooTOS8ypaV4i+YlmBENEJ8kTjCszKTzoTNYGPyWLQQchge"}',
+                username: '{"iv":"Hrs61bdhXcQgtDCB/u2mfg","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"dVYWTkhBHfs4s4xP2Wk"}',
+                password: '{"iv":"5iXSM5rS9jvRv9nK1x8ISQ","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"Gd19m8DBT0bNiUCJQxTTxqUPAqMmOzcx5Q"}'
+            },
+            {
+                name: '{"iv":"6yjUu8g75AW3mwdiKQG9Wg","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"AZd01e1TsLl8xapGj5VhHLsnormb+Q"}',
+                tags: '{"iv":"7H9i9QA6kR1JNTD7Z2iOgg","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"QxDr7oSZqdM"}',
+                site: '{"iv":"fA+WfiTPwOqdKICAUxgIoQ","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"5+jogWvF7sfPCR2z3yeZR4TcIiW7bbZFR2E"}',
+                username: '{"iv":"jF68tvW0X3a08O10EF+t2A","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"FY2BM2iXGWsw16G0fBTurY2PS7pUr5w"}',
+                password: '{"iv":"5iXSM5rS9jvRv9nK1x8ISQ","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"Gd19m8DBT0bNiUCJQxTTxqUPAqMmOzcx5Q"}'
+            }
         ]},
-        "martin-metzmacher": {ID: 3, slug: "martin-metzmacher", name: 'Martin Metzmacher', entries: [
-            {name: "FTP Zugang", site: 'ftp://ftp.metzmacher.com', username: "166296", password: "encrypted"},
-            {name: "MySQL Zugang", site: 'http://metzmacher.com/sqladmin', username: "166296", password: "encrypted"},
+        {ID: 3, name: '{"iv":"iSw5LpLoJCUH9ZwsU++Z1A","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"x8EH6afHEoND4sf/SVd8gUyXk/kM7fCODQ"}', entries: [
+            {
+                name: '{"iv":"S6Ejup5lKH+z/p3GZEq/lA","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"qERm/ci+yzMdUbBshslxSYf+"}',
+                tags: '{"iv":"7H9i9QA6kR1JNTD7Z2iOgg","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"QxDr7oSZqdM"}',
+                site: '{"iv":"LTSi6xNMhcmpx+lA2TZ+qQ","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"dGhnJ6IR+9UiT/+78FDnCm7W1ePRQ87pIwijd2zqaGc"}',
+                username: '{"iv":"jF68tvW0X3a08O10EF+t2A","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"FY2BM2iXGWsw16G0fBTurY2PS7pUr5w"}',
+                password: '{"iv":"5iXSM5rS9jvRv9nK1x8ISQ","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"Gd19m8DBT0bNiUCJQxTTxqUPAqMmOzcx5Q"}'
+            },
+            {
+                name: '{"iv":"paXHpgKPGk3wwFQAN7yipQ","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"QJWd9XhdDL69+SBc70VjbYfq5cM"}',
+                tags: '{"iv":"7H9i9QA6kR1JNTD7Z2iOgg","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"QxDr7oSZqdM"}',
+                site: '{"iv":"k2pAgq0xGh5pgcxfNaLQvA","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"QubursqFeWecSWCQ+YEzfTHlaadQcrWOlWXmKcYmTFgtgv4LN4E"}',
+                username: '{"iv":"jF68tvW0X3a08O10EF+t2A","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"FY2BM2iXGWsw16G0fBTurY2PS7pUr5w"}',
+                password: '{"iv":"5iXSM5rS9jvRv9nK1x8ISQ","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"Gd19m8DBT0bNiUCJQxTTxqUPAqMmOzcx5Q"}'
+            }
         ]},
-        "fritz-milosevic": {ID: 2, slug: "fritz-milosevic", name: 'Fritz Milosevic', entries: [
-            {name: "FTP Zugang", site: 'ftp://ftp.dotadvisors.co.za', username: "166296", password: "encrypted"},
-            {name: "MySQL Zugang", site: 'http://mysql.dotadvisors.co.za', username: "166296", password: "encrypted"}
+        {ID: 2, name: '{"iv":"LfWwcm90krsaPbTlDS29Ig","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"I5/URRfO0Sw/ojKfEOYFWRDlUcSLYEo"}', entries: [
+            {
+                name: '{"iv":"S6Ejup5lKH+z/p3GZEq/lA","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"qERm/ci+yzMdUbBshslxSYf+"}',
+                tags: '{"iv":"7H9i9QA6kR1JNTD7Z2iOgg","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"QxDr7oSZqdM"}',
+                site: '{"iv":"Ypov/b0r/sRW3meWuD9PaQ","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"ekGLZLTRyH6613d5axUll1DOTsXEOnPLQG7bZTscBcXvQYA"}',
+                username: '{"iv":"jF68tvW0X3a08O10EF+t2A","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"FY2BM2iXGWsw16G0fBTurY2PS7pUr5w"}',
+                password: '{"iv":"5iXSM5rS9jvRv9nK1x8ISQ","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"Gd19m8DBT0bNiUCJQxTTxqUPAqMmOzcx5Q"}'
+            },
+            {
+                name: '{"iv":"paXHpgKPGk3wwFQAN7yipQ","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"QJWd9XhdDL69+SBc70VjbYfq5cM"}',
+                tags: '{"iv":"7H9i9QA6kR1JNTD7Z2iOgg","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"QxDr7oSZqdM"}',
+                site: '{"iv":"LbLBgTk4Tic7SA24wep1nw","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"igcXE2+oYUIpKuKg/EcGA3hYYHZAxhDQ0is3+uk7DMfl3Qrx8A"}',
+                username: '{"iv":"jF68tvW0X3a08O10EF+t2A","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"FY2BM2iXGWsw16G0fBTurY2PS7pUr5w"}',
+                password: '{"iv":"5iXSM5rS9jvRv9nK1x8ISQ","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"Gd19m8DBT0bNiUCJQxTTxqUPAqMmOzcx5Q"}'
+            }
         ]},
-        "antje-keyenburg": {ID: 4, slug: "antje-keyenburg", name: 'Antje Keyenburg', entries: [
-            {name: "FTP Zugang", site: 'ftp://ftp.keyenburg.com', username: "166296", password: "encrypted"},
-            {name: "MySQL Zugang", site: 'http://keyenburg.com/sqladmin', username: "166296", password: "encrypted"}
+        {ID: 4, name: '{"iv":"ELKwa2z9gSa7c38uoMgmBw","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"N/pV+r6DKKK9bwoxTFNCMnQaklTB6wQ"}', entries: [
+            {
+                name: '{"iv":"S6Ejup5lKH+z/p3GZEq/lA","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"qERm/ci+yzMdUbBshslxSYf+"}',
+                tags: '{"iv":"7H9i9QA6kR1JNTD7Z2iOgg","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"QxDr7oSZqdM"}',
+                site: '{"iv":"M84peX3ybelnUUeLgpBuKg","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"OyjhEjk3NkaY+yjGACtv7HEDMUbuxazdeaEcOD+yVw"}',
+                username: '{"iv":"jF68tvW0X3a08O10EF+t2A","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"FY2BM2iXGWsw16G0fBTurY2PS7pUr5w"}',
+                password: '{"iv":"5iXSM5rS9jvRv9nK1x8ISQ","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"Gd19m8DBT0bNiUCJQxTTxqUPAqMmOzcx5Q"}'
+            },
+            {
+                name: '{"iv":"paXHpgKPGk3wwFQAN7yipQ","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"QJWd9XhdDL69+SBc70VjbYfq5cM"}',
+                tags: '{"iv":"7H9i9QA6kR1JNTD7Z2iOgg","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"QxDr7oSZqdM"}',
+                site: '{"iv":"0hZsEda+N/tiuhoizEAqNw","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"Er/Py4+kN8+M1myC0xN4rPrs9iGWU5B/5hW6aVwuiNTXqBsHdg"}',
+                username: '{"iv":"jF68tvW0X3a08O10EF+t2A","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"FY2BM2iXGWsw16G0fBTurY2PS7pUr5w"}',
+                password: '{"iv":"5iXSM5rS9jvRv9nK1x8ISQ","v":1,"iter":1000,"ks":256,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"w1ycvZQ5Ni4","ct":"Gd19m8DBT0bNiUCJQxTTxqUPAqMmOzcx5Q"}'
+            }
         ]}
-    };
+    ];
 
     return data;
 });
 
-function CompassController($scope, $routeParams, $route, CompassData){
+compassMain.factory('CompassSettings', function(){
+    var settings = {
+        lang: "en",
+        debug: true
+    };
+
+    return settings;
+});
+
+function CompassController($scope, $routeParams, $route, CompassData, CompassSettings){
     $scope.data = CompassData;
     $scope.params = $routeParams;
-
+    $scope.appSettings = CompassSettings;
 
     $scope.$on('$routeChangeSuccess', function(){
         $scope.params = $route.current.params;
