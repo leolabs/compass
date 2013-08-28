@@ -1,5 +1,13 @@
 <!-- Modal -->
-<div class="modal" id="detailModal" tabindex="-1">
+<script>
+    $(document).ready(function(){
+        $("#detailModal").modal().on("hidden.bs.modal", function(){
+            window.location.href = "#/" + window.location.hash.split("/")[1];
+        });
+    });
+</script>
+
+<div class="modal fade" id="detailModal" tabindex="-1" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -94,7 +102,6 @@
 </div>
 <!-- /.modal -->
 
-
 <div class="panel panel-default">
     <!-- Default panel contents -->
     <div class="panel-heading">
@@ -105,7 +112,7 @@
 
     <!-- List group -->
     <div class="list-group" ng-controller="CompassController">
-        <a ng-repeat="entry in data[params.customer].entries | filter: global.searchTerm" data-params="{{ entry }}" data-toggle="modal" href="#myModal" class="list-group-item">
+        <a ng-repeat="entry in data[params.customer].entries | filter: global.searchTerm" data-params="{{ entry }}" href="#{{ params.customer }}/{{ entry.ID }}" class="list-group-item">
             {{ entry.name | decryptAES: false }} <span class="hidden-xs pull-right">{{ entry.site | decryptAES: false | domainName }}</span>
         </a>
     </div>

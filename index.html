@@ -67,7 +67,7 @@
 
                 <!-- List group -->
                 <div class="list-group">
-                    <a href="#/{{ customer.ID }}" ng-repeat="customer in data | filter: global.searchTerm" class="list-group-item {{ isActiveMenuLink(customer.ID) }}">
+                    <a href="#/{{ customer._id }}" ng-repeat="customer in data | filter: global.searchTerm" class="list-group-item {{ isActiveMenuLink(customer._id) }}">
                         {{ customer.name | decryptAES: false }}
                         <div class="pull-right"><span class="label label-default">{{ customer.entries.length }}</span></div>
                     </a>
@@ -91,6 +91,7 @@
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="http://code.jquery.com/jquery.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/angular.min.js"></script>
 <script src="js/angular-resource.min.js"></script>
