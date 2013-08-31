@@ -21,7 +21,12 @@ class API_Controller extends CI_Controller {
         $this->load->model("categorymodel");
 
         $this->sessionData = $this->session->all_userdata();
-        $this->userData = $this->usermodel->getSingleUserByID($this->sessionData["ID"]);
+        if(isset($this->sessionData['ID'])){
+            $this->userData = $this->usermodel->getSingleUserByID($this->sessionData["ID"]);
+        }else{
+            $this->userData = null;
+        }
+
     }
 
     public function _remap( $param ) {
@@ -35,24 +40,47 @@ class API_Controller extends CI_Controller {
 
         switch( strtoupper( $request ) ) {
             case 'GET':
-                $method = 'read';
+                $method = 'get';
                 break;
             case 'POST':
-                $method = 'save';
+                $method = 'post';
                 break;
             case 'PUT':
-                $method = 'update';
+                $method = 'put';
                 break;
             case 'DELETE':
-                $method = 'remove';
+                $method = 'delete';
                 break;
             case 'OPTIONS':
                 $method = 'options';
                 break;
         }
 
-        $this->$method( $id );
+        if(method_exists($this, $method)){
+            $this->$method( $id );
+        }else{
+            $output = new stdClass();
+            $output->status = 'error';
+            $output->desc = 'The requested method "' . $method . '" is not available in this namespace.';
+            $output->num = 409;
+
+            $this->formatOutput($output);
+        }
     }
+
+    protected function formatOutput( $output = null ) {
+        $this->output->set_header( 'Access-Control-Allow-Origin: *' );
+
+        if( isset( $output->status ) && $output->status == 'error' ) {
+            $this->output->set_status_header( $output->num, $output->desc );
+        }
+
+        $this->parseData( $output );
+
+        $this->output->set_content_type( 'application/json' );
+        $this->output->set_output( json_encode( $output ) );
+    }
+
 
     private function options() {
         $this->output->set_header( 'Access-Control-Allow-Origin: *' );
@@ -62,14 +90,23 @@ class API_Controller extends CI_Controller {
         $this->output->set_output( "*" );
     }
 
-    protected function checkLogin($mail, $password){
+    protected function checkLogin($mail, $password, $createSession = true){
         $checkData = $this->usermodel->tryLogin($mail, $password);
 
         if($checkData[0] == true){
-            $this->session->set_userdata("UserID", $checkData[1][0]);
+            if($createSession) $this->session->set_userdata("UserID", $checkData[1][0]);
             return true;
         }else{
             return false;
+        }
+    }
+
+    protected function checkUser($redirect){
+        if($this->userData == null){
+            if($redirect) redirect("login");
+            return false;
+        }else{
+            return true;
         }
     }
 }
