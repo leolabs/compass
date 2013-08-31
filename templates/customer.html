@@ -1,3 +1,5 @@
+
+
 <div class="panel panel-default">
     <!-- Default panel contents -->
     <div class="panel-heading">
@@ -8,8 +10,27 @@
 
     <!-- List group -->
     <div class="list-group" ng-controller="CompassController">
-        <a ng-repeat="entry in data[params.customer].entries | filter: global.searchTerm" data-params="{{ entry }}" href="#/{{ params.customer }}/{{ entry._id }}" class="list-group-item">
-            {{ entry.name | decryptAES: false }} <span class="hidden-xs pull-right">{{ entry.site | decryptAES: false | domainName }}</span>
+        <a ng-repeat="entry in data[params.customer].entries | filter: global.searchTerm" data-params="{{ entry }}" href="#/{{ params.customer }}/{{ entry._id }}" class="list-group-item compassEntry">
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <p>{{ entry.name | decryptAES: false }} <span class="pull-right visible-sm">{{ entry.site | decryptAES: false | domainName }}</span></p>
+                    <div class="tagLine hidden-xs">
+                        <span class="label label-default tag" ng-repeat="tag in ['just', 'some', 'tagging']">{{ tag }}</span>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 hidden-sm hidden-xs">
+                    <span class="detail">{{ entry.site | decryptAES: false }}</span>
+                    <span class="detail">{{ entry.username | decryptAES: false }}</span>
+                    <span class="detail">{{ entry.password | decryptAES: false }}</span>
+                </div>
+
+                <div class="col-lg-4 hidden-md hidden-sm hidden-xs">
+                    <span class="detail"><lang>Created</lang>: {{ entry.created }}</span>
+                    <span class="detail"><lang>Modified</lang>: {{ entry.modified }}</span>
+                    <span class="detail"><lang>Viewed</lang>: {{ entry.viewed }}</span>
+                </div>
+            </div>
         </a>
     </div>
 </div>
