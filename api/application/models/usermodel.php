@@ -55,6 +55,22 @@ class UserModel extends CI_Model {
     }
 
     /**
+     * Returns a single user by it's ID or null if no matching user was found
+     *
+     * @param $id int the user's ID
+     * @return array|null
+     */
+    public function getSingleUserByID($id){
+        $result = $this->db->get_where($this->usersTable, array("ID" => $id));
+
+        if(count($result) > 0){
+            return $result[0];
+        }else{
+            return null;
+        }
+    }
+
+    /**
      * Adds a new user to the database
      *
      * @param $customerID int the customer's ID
