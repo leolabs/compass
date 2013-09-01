@@ -18,8 +18,9 @@ class CategoryModel extends CI_Model
      *
      * @return array an array containing the results
      */
-    public function getCategoriesForCustomer($customerID, $topOnly)
+    public function getCategoriesForCustomer($customerID, $topOnly = false)
     {
+        $this->db->select("ID, Name, ParentID, ABS(0) AS ReadOnly");
         $this->db->where(array("CustomerID" => $customerID));
         if ($topOnly) $this->db->where("ParentID", 0);
         return $this->db->get($this->categoriesTable)->result_array();
@@ -33,8 +34,9 @@ class CategoryModel extends CI_Model
      *
      * @return array an array containing the results
      */
-    public function getCategoriesForUser($userID, $topOnly)
+    public function getCategoriesForUser($userID, $topOnly = false)
     {
+        $this->db->select("uc.CategoryID AS ID, c.Name, c.ParentID, uc.ReadOnly");
         $this->db->from('`' . $this->categoriesTable . '` AS c,  `' . $this->connectionTable . '` AS uc');
         $this->db->where("uc.CategoryID = c.ID")->where("uc.UserID", $userID);
         if ($topOnly) $this->db->where("c.ParentID", 0);
@@ -116,5 +118,27 @@ class CategoryModel extends CI_Model
         );
 
         return $this->db->delete($this->connectionTable, $filter);
+    }
+
+    /**
+     * Returns a single category by it's ID
+     *
+     * @param $id int the category's ID
+     * @param $customerID int the customer's ID
+     * @param null|int $userID the userID or null if it doesn't matter
+     * @return array|null the result or null if no result found
+     */
+    public function getSingleCategoryByID($id, $customerID, $userID = null){
+        $this->db->select("uc.CategoryID AS ID, c.Name, c.ParentID, uc.ReadOnly");
+        $this->db->from('`' . $this->categoriesTable . '` AS c,  `' . $this->connectionTable . '` AS uc');
+        $this->db->where("uc.CategoryID = c.ID")->where("c.ID", $id)->where("c.CustomerID", $customerID);
+        if($userID != null) $this->db->where("uc.UserID", $userID);
+        $result = $this->db->get()->result_array();
+
+        if(count($result) > 0){
+            return $result[0];
+        }else{
+            return null;
+        }
     }
 }

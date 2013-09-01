@@ -16,7 +16,7 @@ class UserModel extends CI_Model {
      */
     public function generatePassHash($password)
     {
-        return $this->sha1->generate($password . 'compass-fh39sjd');
+        return $this->encrypt->sha1($password . 'compass-fh39sjd');
     }
 
     /**
@@ -61,7 +61,7 @@ class UserModel extends CI_Model {
      * @return array|null
      */
     public function getSingleUserByID($id){
-        $result = $this->db->get_where($this->usersTable, array("ID" => $id));
+        $result = $this->db->get_where($this->usersTable, array("ID" => $id))->result_array();
 
         if(count($result) > 0){
             return $result[0];

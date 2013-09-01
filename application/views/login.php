@@ -85,18 +85,23 @@
 </div>
 
 <div class="container">
-
     <form class="form-signin" method="POST" action="<?php echo site_url('login/form'); ?>">
         <h2 class="form-signin-heading">com<strong>pass</strong></h2>
-        <input type="text" class="form-control" placeholder="Email address" autofocus>
-        <input type="password" class="form-control" placeholder="Password">
+
+        <?php if(isset($status)): ?>
+        <div class="alert alert-danger">
+            <strong>Error:</strong> Wrong email address or password. Please try again with correct login data.
+        </div>
+        <?php endif; ?>
+
+        <input type="text" class="form-control" name="mail" placeholder="Email address" autofocus>
+        <input type="password" class="form-control" name="password" placeholder="Password">
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
     </form>
 
 </div>
 
-<!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="/res/js/jquery.min.js"></script>
 <script src="/res/js/bootstrap.min.js"></script>
 

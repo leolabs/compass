@@ -83,12 +83,14 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#"><lang>Einstellungen</lang></a></li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Leo Bernard <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $userData['NameFirst'] . ' ' . $userData['NameLast']; ?> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#"><lang>Profil bearbeiten</lang></a></li>
-                        <li><a href="#"><lang>Ungelesene Nachrichten</lang></a></li>
+                        <li></li>
                         <li class="divider"></li>
-                        <li><a href="#"><lang>Ausloggen</lang></a></li>
+                        <li><a href="#"><lang>Profil bearbeiten</lang></a></li>
+                        <li><a href="#"><lang>Nachrichten</lang> <span class="badge pull-right">0</span></a></li>
+                        <li class="divider"></li>
+                        <li><a href="<?php echo site_url("logout"); ?>"><lang>Ausloggen</lang></a></li>
                     </ul>
                 </li>
             </ul>

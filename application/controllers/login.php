@@ -2,7 +2,11 @@
 
 class Login extends API_Controller {
     public function get($id){
-        $this->load->view('login');
+        if($id == 'logout'){
+            $this->destroyLogin(true);
+        }else{
+            $this->load->view('login');
+        }
     }
 
     public function post($id){
@@ -10,23 +14,9 @@ class Login extends API_Controller {
         $pass = $this->input->post("password");
 
         if($this->checkLogin($mail, $pass, true)){
-            if($id == "form"){
-                redirect('app');
-            }else{
-                $output = new stdClass();
-                $output->status = 'success';
-                $output->desc = 'The user is now logged in.';
-                $output->num = 200;
-            }
+            redirect('');
         }else{
-            if($id == "form"){
-                $this->load->view('login', array("Status" => "TryAgain"));
-            }else{
-                $output = new stdClass();
-                $output->status = 'success';
-                $output->desc = 'The user is now logged in.';
-                $output->num = 200;
-            }
+            $this->load->view('login', array("status" => "TryAgain"));
         }
 
     }
