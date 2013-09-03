@@ -13,9 +13,12 @@ abstract class API_Controller extends BaseController {
 
     public function _remap( $param ) {
         $request = $_SERVER['REQUEST_METHOD'];
-        $data = json_decode(file_get_contents('php://input'), true);
-
+        $input = file_get_contents('php://input');
+        $data = json_decode($input, true);
+        if($data == null) parse_str($input, $data);
         if($data == null) $data = $_POST;
+
+        file_put_contents("test.txt", $input);
 
         $id = $param;
 

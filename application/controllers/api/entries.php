@@ -59,10 +59,13 @@ class Entries extends API_Controller {
     }
 
     public function put($id, $data){
-        if(!isset($data['CategoryID']) || !isset($data['EncryptedData']) || !isset($data['id'])){
-            $this->apiOutput(false, 400, "Some data is missing. Please check if you have sent the fields ID, CategoryID and EncryptedData.", $data);
+        if(!isset($data['id'])) $data['id'] = $id;
+
+        if(!isset($data['CategoryID']) || !isset($data['EncryptedData']) || $data['id'] == "index"){
+            $this->apiOutput(false, 400, "Some data is missing. Please check if you have sent the fields id, CategoryID and EncryptedData.", $data);
             return;
         }
+
 
         if(!$this->categorymodel->checkCategoryRights($this->userData['id'], $data['CategoryID'], true)){
             $this->apiOutput(false, 403, "This user doesn't have the sufficient rights to change an entry in the given Category.");
@@ -86,7 +89,7 @@ class Entries extends API_Controller {
     public function delete($id, $data)
     {
         if(!isset($data['id']) || !isset($data['CategoryID'])){
-            $this->apiOutput(false, 400, "Some data is missing. Please check if you have sent the field ID.", $data);
+            $this->apiOutput(false, 400, "Some data is missing. Please check if you have sent the field id.", $data);
             return;
         }
 
