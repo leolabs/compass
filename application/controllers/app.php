@@ -5,7 +5,8 @@ class App extends BaseController {
     {
         if($this->checkUser(false)){
             $data = array(
-                "userData" => $this->userData
+                "userData" => $this->userData,
+                "customer" => $this->customermodel->getCustomerByID($this->userData['CustomerID'])
             );
 
             $this->load->view('app', $data);

@@ -63,6 +63,51 @@ class CategoryModel extends CI_Model
     }
 
     /**
+     * Edits a category in the categories table
+     *
+     * @param $categoryID int the customer's ID
+     * @param $name string the category's name
+     * @param $parent int the parent category
+     * @return object the operation's result
+     */
+    public function editCategory($categoryID, $name, $parent = 0)
+    {
+        $data = array(
+            "Name" => $name,
+            "ParentID" => $parent
+        );
+
+        $filter = array(
+            "ID" => $categoryID
+        );
+
+        return $this->db->update($this->categoriesTable, $data, $filter);
+    }
+
+    /**
+     * Checks if a given user has the right to access the given category
+     *
+     * @param $userID int the user's ID
+     * @param $categoryID int the category's ID
+     * @param bool $needsWrite does the user need to change something?
+     * @return bool does the user have sufficient rights?
+     */
+    public function checkCategoryRights($userID, $categoryID, $needsWrite = false)
+    {
+        $result = $this->db->get_where($this->connectionTable, array("UserID" => $userID, "CategoryID" => $categoryID))->result_array();
+
+        if(count($result) > 0){
+            if(!$needsWrite || $result[0]['ReadOnly']){
+                return true;
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
+    }
+
+    /**
      * Adds an assignment of a user to a category
      *
      * @param $categoryID int the category's ID

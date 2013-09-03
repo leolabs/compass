@@ -1,119 +1,51 @@
-<!-- Modal -->
-<script>
-    $(document).ready(function(){
-        $("#detailModal").modal().on("hidden.bs.modal", function(){
-            window.location.href = "#/" + window.location.hash.split("/")[1];
-        });
-    });
-</script>
-
-<div class="modal fade" id="detailModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close">&times;</button>
-                <h4 class="modal-title">Duplexmedia - FTP Zugang</h4>
+<div class="row">
+    <div class="col-md-7">
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">
+                Einträge für {{ data[params.customer].name | decryptAES: false }}
+                <button class="btn pull-right btn-xs btn-default" style="margin-left: 10px">Einstellungen</button>
+                <button class="btn pull-right btn-xs btn-default">Neuer Eintrag</button>
             </div>
-            <div class="modal-body">
-                <form role="form">
-                    <div class="form-group input-group">
-                        <span class="input-group-addon"><i class="icon-fixed-width icon-file-text"></i></span>
-                        <input type="text" class="form-control" placeholder="{{ 'Name' | lang:this }}">
-                    </div>
-                    <div class="form-group input-group">
-                        <span class="input-group-addon"><i class="icon-fixed-width icon-tags"></i></span>
-                        <input type="text" class="form-control" placeholder="{{ 'Tags (Kommagetrennt)' | lang:this }}">
-                    </div>
-                    <div class="form-group input-group">
-                        <span class="input-group-addon"><i class="icon-fixed-width icon-globe"></i></span>
-                        <input type="text" class="form-control" placeholder="{{ 'Internetadresse' | lang:this }}">
 
-                        <div class="input-group-btn">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                <lang>Mehr</lang>
-                                <span class="caret"></span></button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#"><lang>Website öffnen</lang></a></li>
-                                <li><a href="#"><lang>In die Zwischenablage</lang></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="form-group input-group">
-                        <span class="input-group-addon"><i class="icon-fixed-width icon-user"></i></span>
-                        <input type="text" class="form-control" placeholder="{{ 'Benutzername' | lang:this }}">
-
-                        <div class="input-group-btn">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                <lang>Mehr</lang>
-                                <span class="caret"></span></button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#"><lang>In die Zwischenablage</lang></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="form-group input-group">
-                        <span class="input-group-addon"><i class="icon-fixed-width icon-key"></i></span>
-                        <input type="password" class="form-control" placeholder="{{ 'Passwort' | lang:this }}">
-
-                        <div class="input-group-btn">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                <lang>Mehr</lang>
-                                <span class="caret"></span></button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#"><lang>Passwort anzeigen</lang></a></li>
-                                <li><a href="#"><lang>In die Zwischenablage</lang></a></li>
-                                <li class="divider"></li>
-                                <li><a href="#"><lang>Neues Passwort generieren</lang></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="form-group input-group">
-                        <span class="input-group-addon"><i class="icon-fixed-width icon-file-text"></i></span>
-                        <textarea class="form-control" rows="3" placeholder="{{ 'Kommentare (Markdown)' | lang:this }}"></textarea>
-                    </div>
-                </form>
-
-                <div class="panel panel-default" style="margin-bottom: 0">
-                    <!-- Default panel contents -->
-                    <div class="panel-heading"><lang>Weitere Infos</lang></div>
-
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <strong><lang>Erstellt am</lang></strong> 25.8.2013<br />
-                                <strong><lang>Geändert am</lang></strong> 25.8.2013
-                            </div>
-                            <div class="col-sm-6">
-                                <strong><lang>Letzter Zugriff</lang></strong> 25.8.2013<br />
-                                <strong><lang>Ablaufdatum</lang>:</strong> 25.8.2013
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer" style="margin-top: 0">
-                <button type="button" class="btn btn-default" data-dismiss="modal"><lang>Schließen</lang></button>
-                <button type="button" class="btn btn-primary"><lang>Speichern</lang></button>
+            <!-- List group -->
+            <div class="list-group" ng-controller="CompassController">
+                <a ng-repeat="entry in data[params.customer].entries | filter: global.searchTerm" data-params="{{ entry }}"
+                   href="#{{ params.customer }}/{{ entry.ID }}" class="list-group-item">
+                    {{ entry.name | decryptAES: false }} <span class="hidden-xs pull-right">{{ entry.site | decryptAES: false | domainName }}</span>
+                </a>
             </div>
         </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
-<!-- /.modal -->
-
-<div class="panel panel-default">
-    <!-- Default panel contents -->
-    <div class="panel-heading">
-        Einträge für {{ data[params.customer].name | decryptAES: false }}
-        <button class="btn pull-right btn-xs btn-default" style="margin-left: 10px">Einstellungen</button>
-        <button class="btn pull-right btn-xs btn-default">Neuer Eintrag</button>
     </div>
 
-    <!-- List group -->
-    <div class="list-group" ng-controller="CompassController">
-        <a ng-repeat="entry in data[params.customer].entries | filter: global.searchTerm" data-params="{{ entry }}" href="#{{ params.customer }}/{{ entry.ID }}" class="list-group-item">
-            {{ entry.name | decryptAES: false }} <span class="hidden-xs pull-right">{{ entry.site | decryptAES: false | domainName }}</span>
-        </a>
+    <div class="col-md-5">
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">
+                Duplexmedia - FTP Zugang
+                <button class="btn btn-default btn-xs pull-right"><i class="icon-pencil"></i></button>
+            </div>
+
+            <div class="panel-body entry-head">
+                <h3 style="margin-top: 0;">FTP Zugang</h3>
+                <div class="tagLine hidden-xs">
+                    <span class="label label-default tag" ng-repeat="tag in ['just', 'some', 'tagging']">{{ tag }}</span>
+                </div>
+            </div>
+
+            <hr style="margin: 0">
+
+            <div class="panel-body entry-detail">
+                <span class="detail-entry"><i class="icon-globe icon-fixed-width"></i><a href="#">ftp://ftp.duplexmedia.com</a></span>
+                <span class="detail-entry"><i class="icon-user icon-fixed-width"></i>166296</span>
+                <span class="detail-entry"><i class="icon-key icon-fixed-width"></i>Geheimes Passwort</span>
+            </div>
+
+            <hr style="margin: 0">
+
+            <div class="panel-body entry-markdown" style="max-height: 150px; overflow-y: auto">
+
+            </div>
+        </div>
     </div>
 </div>

@@ -1,5 +1,19 @@
 <?php
 
+/*
+ * Some notes about user levels:
+ *
+ *  +-------+----------+-----------------------------------------------------------+
+ *  | Level | Role     | Rights (higher level has all rights of lower level)       |
+ *  +-------+----------+-----------------------------------------------------------+
+ *  |     0 | Worker   | View and edit entries in categories that he can see       |
+ *  |     1 | Manager  | View and edit everything, create and edit categories      |
+ *  |     2 | Co-Admin | Manage users and their roles, never higher than level 2   |
+ *  |     3 | Admin    | Control payment, branding, everything admin-like          |
+ *  +-------+----------+-----------------------------------------------------------+
+ */
+
+
 class UserModel extends CI_Model {
     private $usersTable = 'users';
 
@@ -30,6 +44,11 @@ class UserModel extends CI_Model {
     public function getUsersFiltered($filter, $limit = NULL, $offset = NULL)
     {
         return $this->db->get_where($this->usersTable, $filter, $limit, $offset)->result_array();
+    }
+
+    public function getUsersForCustomer($customerID)
+    {
+        return $this->getUsersFiltered(array("CustomerID" => $customerID));
     }
 
     /**

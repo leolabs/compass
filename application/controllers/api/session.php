@@ -1,7 +1,14 @@
 <?php
 
-class Login extends API_Controller {
-    public function delete($id){
+class Session extends API_Controller {
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->requireLogin = false;
+    }
+
+    public function delete($id, $data){
         $this->session->sess_destroy(false);
 
         if($this->checkUser(false)){
@@ -11,7 +18,7 @@ class Login extends API_Controller {
         }
     }
 
-    public function post($id){
+    public function post($id, $data){
         $mail = $this->input->post("mail");
         $pass = $this->input->post("password");
 
@@ -21,5 +28,15 @@ class Login extends API_Controller {
             $this->apiOutput(false, 401, 'The user\'s login data is not correct.');
         }
 
+    }
+
+    function get($id, $data)
+    {
+        // TODO: Implement get() method.
+    }
+
+    function put($id, $data)
+    {
+        // TODO: Implement put() method.
     }
 }
